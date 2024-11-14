@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :companies do
-    resources :employees, only: [:new, :create, :show, :destroy]
+    resources :employees, only: [:new, :create]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -10,5 +10,8 @@ class CoachesController < ApplicationController
     if params[:program_id].present?
       @coaching_programs = @coaching_programs.where(id: params[:program_id])
     end
+
+  rescue ActiveRecord::RecordNotFound
+    render status: :not_found, json: { error: 'Coach not found' }
   end
 end
