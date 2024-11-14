@@ -1,0 +1,30 @@
+<h3>Coaching Responsibilities</h3>
+<%= form_with url: dashboard_coach_path, method: :get, remote: true do |form| %>
+  <%= form.label :company %>
+  <%= form.select :company_id, all_company_data, include_blank: true %>
+
+  <%= form.label :program %>
+  <%= form.select :program_id, coaching_program_data(@coach), include_blank: true %>
+
+  <%= form.submit 'Filter' %>
+  <%= link_to 'Reset', dashboard_coach_path, class: 'btn btn-danger' %>
+<% end %>
+
+<table class="table" border=1>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>CoachingProgram</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @coaching_programs.any? %>
+      <%= render collection: @coaching_programs, partial: 'coaching_program'%>
+    <% else %>
+      <tr>
+        <td colspan="2">No Data Present</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Go to Admin', rails_admin_path, class: 'btn btn-danger' %>
