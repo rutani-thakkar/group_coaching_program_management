@@ -1,0 +1,20 @@
+<table class="table", border=1>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Position</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @company.employees.any? %>
+      <%= render collection: @company.employees, partial: 'employee'%>
+    <% else %>
+      <tr>
+        <td colspan="5">No Data Present</td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+<h1><%= @company.name %></h1>
+
+<p><strong>Description:</strong> <%= @company.description %></p>
+
+<h2>Employees</h2>
+<%= render 'employees_listing'%>
+<%= link_to "Register Employee", new_company_employee_path(company_id: @company.id), class: "btn btn-primary" %>
+</br>
+<%= link_to 'Go to Admin', rails_admin_path, class: 'btn btn-danger' %>

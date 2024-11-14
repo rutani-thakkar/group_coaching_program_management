@@ -1,0 +1,24 @@
+<h3>Employees for <%= company.name %></h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Position</th>
+      <th>Date Hired</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.position %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if employees.empty? %>
+  <p>No employees registered for this company yet.</p>
+<% end %>
