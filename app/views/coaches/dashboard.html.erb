@@ -1,30 +1,44 @@
-<h3>Coaching Responsibilities</h3>
-<%= form_with url: dashboard_coach_path, method: :get, remote: true do |form| %>
-  <%= form.label :company %>
-  <%= form.select :company_id, all_company_data, include_blank: true %>
+<div class="container mt-4">
+  <h2 class="mb-4">Coaching Responsibilities</h2>
 
-  <%= form.label :program %>
-  <%= form.select :program_id, coaching_program_data(@coach), include_blank: true %>
+  <%= form_with url: dashboard_coach_path, method: :get, remote: true, class: "row g-3 mb-4 align-items-end" do |form| %>
+    <div class="col-md-4">
+      <%= form.label :company, class: "form-label" %>
+      <%= form.select :company_id, all_company_data, {include_blank: true}, {class: "form-select"} %>
+    </div>
 
-  <%= form.submit 'Filter' %>
-  <%= link_to 'Reset', dashboard_coach_path, class: 'btn btn-danger' %>
-<% end %>
+    <div class="col-md-4">
+      <%= form.label :program, class: "form-label" %>
+      <%= form.select :program_id, coaching_program_data(@coach), { include_blank: true }, { class: "form-select" } %>
+    </div>
 
-<table class="table" border=1>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>CoachingProgram</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @coaching_programs.any? %>
-      <%= render collection: @coaching_programs, partial: 'coaching_program'%>
-    <% else %>
-      <tr>
-        <td colspan="2">No Data Present</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'Go to Admin', rails_admin_path, class: 'btn btn-danger' %>
+    <div class="col-md-4 d-flex justify-content-start">
+      <%= form.submit 'Filter', class: 'btn btn-success me-2' %>
+      <%= link_to 'Reset', dashboard_coach_path, class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Company</th>
+          <th>Coaching Program</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @coaching_programs.any? %>
+          <%= render collection: @coaching_programs, partial: 'coaching_program' %>
+        <% else %>
+          <tr>
+            <td colspan="2">No Data Present</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3">
+    <%= link_to 'Go to Admin', rails_admin_path, class: 'btn btn-primary' %>
+  </div>
+</div>
